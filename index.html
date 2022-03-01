@@ -172,7 +172,7 @@ var recordidVal = getQueryVariable("recordid");
 document.getElementById("nomedocliente").innerHTML = decodeURIComponent(clienteVal).toUpperCase();
 var idprocesso = getQueryVariable("idprocesso");
 var qrcode = new QRCode("qrcode", {
-    text: "http://192.168.1.1:8004/?zone=techmeter_expedicao" + "&idprocesso=" + idprocesso + "&cliente=" + clienteVal + "&recordid=" + recordidVal,
+    text: "http://192.168.1.1:8006/?zone=techmeter_expedicao2" + "&idprocesso=" + idprocesso + "&cliente=" + clienteVal + "&recordid=" + recordidVal,
     width: 182,
     height: 182,
     colorDark : "#000000",
