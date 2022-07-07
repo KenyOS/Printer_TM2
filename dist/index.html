@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css?family=Nunito Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script> 
+<meta charset="utf-8"> 
+<title>Gerador de Etiqueta</title>
+<style>@page {
+  size: A4 landscape;
+}
+
+body {
+  font-family: verdana, arial, sans-serif;
+  font-size: 12px;
+}
+
+#maintable {
+  display: none;
+}
+
+td.voucher {
+  text-align: left;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  background-size: 175px 60px;
+  background-origin: content-box;
+}
+
+tr.voucher {
+  page-break-inside: avoid;
+}
+
+#tpl {
+  display: none;
+}
+
+fieldset {
+  color: #000;
+  text-align: left;
+  width: 200px;
+  border: 1px solid #000;
+}
+
+legend {
+  padding: 0 10px;
+}
+
+@media print {
+  #generator {
+    display: none;
+  }
+
+  @page {
+    size: A4 landscape;
+    background-color: #90ee90;
+  }
+}
+
+label {
+  font-weight: bold;
+  display: block;
+}
+
+</style>
+</head>
+
+<body>
+<div id="generator">
+<img src="https://github.com/KenyOS/pfsense-captive-portal/raw/master/captiveportal-logo.png" style="margin-left: 80%">
+<h1>Gerador de Etiqueta </h1>
+<h2>Gerador de Volumes de Caixas:</h2>
+<label for="startingValue">Começo do Volume : </label>
+<input type="text" id="startingValue" value="1">
+<label for="endingValue">Fim do Volume :</label>
+<input type="text" id="endingValue">
+<button onclick="runCounter()">Gerar</button>
+
+<div class="content-pane">
+  <div id="progression-pane">
+    </div>
+  </div>
+
+
+
+
+<form id="form">
+<textarea id="vouchers" value="1" rows="20">
+
+
+</textarea>
+<button type="button" id="button">Gerar Etiqueta</button>
+<button type="button" id="print" disabled="">Imprimir</button>
+</form>
+
+</div>
+<div id="tpl" style="height: 425px">
+        <p><img src="https://github.com/KenyOS/pfsense-captive-portal/raw/master/captiveportal-logo.png" style="float: left; margin-right: -25%"> </p><div style="text-align: center"><span style="font-family: Nunito Sans">Rua Pedralia, Nº 70 - Bairro Gumercindo</span><br><span style="font-family: Nunito Sans"> Sao Paulo/SP - CEP-04130-080</span><br><span style="font-family: Nunito Sans; font-size: 14px"> 🌐 techmeter.com.br </span> <br> <span style="font-family: Nunito Sans; font-size: 14px">🕿 Tel: (11) 5071-1630</span><p></p><br><span style="float: left; visibility: hidden; margin-top: 32px; margin-left: 15px; margin-right: 64%; font-family: Open Sans, sans-serif; font-size: 32px; font-weight: bold">Cliente:</span></div>
+        <fieldset class="box" style="letter-spacing: 4px; width: 70px; height: 50px; border-width: 5px; border-color: #bb8e51; border-bottom-style: solid; font-family: Open Sans, sans-serif; font-size: 42px; font-weight: 900; position: relative; bottom: 180px; right: -465px; text-align: center !important">
+            <legend style="letter-spacing: 6px; font-size: 14px">caixa</legend>
+            <div style="bottom: 28px !important">
+            <div style="text-align: center">
+            <span id="code" style="margin-top: -10px; position: absolute; left: calc(5% - 5px); right: calc(25% - 35px)"></span>
+            </div>
+            </div>
+        </fieldset>
+        <div>
+       <fieldset style="word-break: break-word; width: 83%; height: 260px; border-width: 2px; margin-left: 15px; font-family: Open Sans, sans-serif; font-size: calc(100% + 2vw); font-weight: 900; position: relative; bottom: 180px; box-shadow: 0 3px 8px #0000003d">
+        <legend style="letter-spacing: 2px; text-align: left; font-size: 14px"><span style="">Cliente</span></legend>
+        <legend style="letter-spacing: 2px; text-align: right; font-size: 28px"><span><p id="idprocesso" style="font-family: Nunito Sans, sans-serif; font-size: 10px; font-weight: bold; position: absolute; bottom: 120px; right: -128px; transform: rotate(-90deg)"></p><p></p>
+
+       <div id="qrcode" style="z-index: 2; background-color: #fff; position: absolute; top: 55%; left: 453px"></div></span></legend>
+       <span id="nomedocliente" style="position: relative; top: -50px"></span>
+       <span style="visibility: hidden">Textxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+       <fieldset style="height: 105px; width: 450px; z-index: -1; border-width: 1px; margin-top: -65px; margin-left: 15px; font-family: Open Sans, sans-serif; font-size: 28px; position: absolute; top: 183px; bottom: 125px; box-shadow: 0 2px 4px #0000002e">
+            <legend style="font-weight: 900">NF.</legend>
+            <span style="width: 20px"></span>
+            <p id="qr"></p>
+        </fieldset>
+        
+        </fieldset></div>
+       
+       <fieldset style="width: 98px; height: 125px; z-index: 1; background-color: #fff; position: relative; top: -343px; left: 462px">
+        <legend style="">
+            <p>Uso Interno</p>
+        </legend>
+       </fieldset>
+
+       <p>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</p>
+
+
+   </div>
+
+<table id="maintable">
+<tbody id="table">
+</tbody>
+</table>
+
+<script>/*****
+ * When the "show me!" button gets clicked, 
+ *   there's a few things we do: get the values of
+ *   the inputs, loop from the starting value to 
+ *   the ending value by a given increment (default
+ *   increment of two), and output the result to a div.
+ *****/ runCounter = function() {
+    // This is the location we'll put the result
+    var contentPane = document.getElementById("progression-pane");
+    // This will be the output string
+    var contentString = "";
+    // retrieve the values given AND MAKE THEM
+    //  INTEGERS! We could do floats, but it's 
+    //  darn important to make them numbers.
+    var startingValue = parseInt(document.getElementById("startingValue").value);
+    var endingValue = parseInt(document.getElementById("endingValue").value);
+    if (startingValue && endingValue) {
+        // So long as we actually HAVE a staring and ending value...
+        for(i = startingValue; i <= endingValue; i += 1)// If we are here, we have all three: start, end and increment
+        contentString += i + "/" + endingValue + "\n";
+        if (endingValue % 2 === 1) contentString += "\u2800\n";
+        contentString += "";
+        // We've finished formatting the string, 
+        //  let's output it to the proper div.
+        //  Note that I'm using innerHTML, 
+        //   document.writeln is considered bad.
+        $("#vouchers").val(contentString);
+    }
+};
+function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for(var i = 0; i < vars.length; i++){
+        var pair = vars[i].split("=");
+        if (pair[0] == variable) return pair[1];
+    }
+    return false;
+}
+function getInputValue() {
+    // Selecting the input element and get its value 
+    var clienteVal1 = getQueryVariable("cliente");
+    //Display Cliente Name on H1
+    document.getElementById("nomedocliente").innerHTML = clienteVal1;
+//Display custom QRCode
+//document.getElementById("qr").innerHTML = getQueryVariable("idprocesso");
+}
+var clienteVal = getQueryVariable("cliente");
+var recordidVal = getQueryVariable("recordid");
+document.getElementById("nomedocliente").innerHTML = decodeURIComponent(clienteVal).toUpperCase();
+var idprocessoVal = getQueryVariable("idprocesso");
+document.getElementById("idprocesso").innerHTML = decodeURIComponent(idprocessoVal);
+var qrcode = new QRCode("qrcode", {
+    text: "l.techmeter.com.br/8Apu2Y?&recordid=" + recordidVal,
+    width: 106,
+    height: 106,
+    colorDark: "#000000",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+});
+function makeCode() {
+    var clienteText = document.getElementById("cliente");
+    var elText = document.getElementById("qr");
+    if (!elText.value) {
+        elText.focus();
+        return;
+    }
+    qrcode.makeCode(elText.value);
+}
+makeCode();
+$("#text").on("blur", function() {
+    makeCode();
+}).on("keydown", function(e) {
+    if (e.keyCode == 13) makeCode();
+});
+document.getElementById("print").addEventListener("click", printEm);
+document.getElementById("button").addEventListener("click", buildEm);
+document.getElementById("vouchers").addEventListener("focus", clearEm);
+function clearEm() {
+    var vouchers = document.getElementById("vouchers");
+    if (!vouchers.value.search('" voucher1')) vouchers.value = "";
+}
+function printEm() {
+    window.print();
+}
+function buildEm() {
+    var vouchers = document.getElementById("vouchers").value.trim().split("\n");
+    if (vouchers.length % 2) {
+        alert("Campo Gerado n\xe3o pode estar vazio.");
+        return 0;
+    }
+    var tpl = document.getElementById("tpl");
+    var code = document.getElementById("code");
+    var table = document.getElementById("table");
+    var tr;
+    document.getElementById("maintable").style.display = "none";
+    document.getElementById("table").innerHTML = "";
+    for(var i = 0; i < vouchers.length; i++){
+        if (!(i % 2)) {
+            tr = document.createElement("tr");
+            tr.className = "voucher";
+        }
+        // pfsense prints the voucher codes as something like
+        //   " aaaaaaaaaa"
+        // into the csv -> account for this!
+        code.innerHTML = vouchers[i].replace(/"/g, "").trim();
+        var foo = tpl.cloneNode(true);
+        foo.style.display = "block";
+        foo.removeAttribute("id");
+        var td = document.createElement("td");
+        td.className = "voucher";
+        td.appendChild(foo);
+        tr.appendChild(td);
+        if (i % 2) table.appendChild(tr);
+    }
+    document.getElementById("maintable").style.display = "block";
+    document.getElementById("print").disabled = false;
+}
+
+</script>
+
+</body>
+</html>
+

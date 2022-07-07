@@ -7,6 +7,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script> 
 <meta charset="utf-8" /> 
 <title>Gerador de Etiqueta</title>
+<link rel="icon" type="image/x-icon" href="https://github.com/KenyOS/pfsense-captive-portal/raw/master/document-office-print-printer-svgrepo-com.svg">
 <style type="text/css">
     @page {
             size: A4 landscape;
@@ -75,7 +76,7 @@ label {
 <body>
 <div id="generator">
 <img src="https://github.com/KenyOS/pfsense-captive-portal/raw/master/captiveportal-logo.png" style="margin-left: 80%;"/>
-<h1>Gerador de Etiqueta </h1>
+<h1>Gerador de Etiqueta</h1>
 <h2>Gerador de Volumes de Caixas:</h2>
 <label for="startingValue">Começo do Volume : </label>
 <input type="text" id="startingValue" value="1" />
@@ -104,7 +105,7 @@ label {
 <div id="tpl" style="height: 425px;">
         <p><img src="https://github.com/KenyOS/pfsense-captive-portal/raw/master/captiveportal-logo.png" style="float:left;margin-right: -25%;"> <div style="text-align:center;"><span style="font-family: 'Nunito Sans';">Rua Pedralia, Nº 70 - Bairro Gumercindo</span><br><span style="font-family: 'Nunito Sans';"> Sao Paulo/SP - CEP-04130-080</span><br><span style="font-family: 'Nunito Sans';font-size: 14px;"> 🌐 techmeter.com.br </span> <br> <span style="font-family: 'Nunito Sans';font-size: 14px;">🕿 Tel: (11) 5071-1630</span></p><br><span style="font-size: 32px;float:left;margin-right: 64%;font-weight: bold;font-family: 'Open Sans', sans-serif;margin-left:15px;margin-top:32px;visibility:hidden;">Cliente:</span></div>
         <fieldset class="box" style="position: relative;font-weight: 900;font-size: 42px;letter-spacing: 4px;font-family: 'Open Sans', sans-serif;bottom: 15px;border-bottom-style: solid;border-width: 5px;border-color: RGB(187, 142, 81); right: -465px;bottom: 180px; width: 70px; height: 50px;text-align: center !important;">
-            <legend style="font-size: 14px;letter-spacing: 6px;">caixa</legend>
+            <legend style="font-size: 14px;letter-spacing: 6px;font-weight: 900;">caixa</legend>
             <div style="bottom: 28px !important;">
             <div style="text-align: center;">
             <span id="code" style="position:absolute;right:calc(25% - 35px);left:calc(5% - 5px);margin-top: -10px;"></span>
@@ -116,10 +117,10 @@ label {
         <legend style="font-size: 14px;letter-spacing: 2px;text-align: left;"><span style="">Cliente</span></legend>
         <legend style="font-size: 28px;letter-spacing: 2px;text-align: right;"><span><p id="idprocesso" style="position: absolute;transform: rotate(-90deg);right:-128px;bottom: 120px;font-weight: bold;font-family: 'Nunito Sans', sans-serif;font-size: 10px;"></p></p>
 
-       <div id="qrcode" style="position: absolute;left: 453px;top: 55%;background-color: white;z-index: 2;"></div></span></legend>
+       <div id="qrcode" style="position: absolute;left: 453px;top: 52%;background-color: white;z-index: 2;"></div></span></legend>
        <span id="nomedocliente" style="position:relative;top: -50px;"></span>
        <span style="visibility:hidden">Textxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
-       <fieldset style="position: absolute;font-size: 28px;font-family: 'Open Sans', sans-serif;margin-left:15px;bottom: 125px;margin-top: -65px;border-width: 1px;box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;height:105px;top: 183px;width:450px;z-index: -1">
+       <fieldset style="position: absolute;font-size: 28px;font-family: 'Open Sans', sans-serif;margin-left:15px;bottom: 125px;margin-top: -65px;border-width: 1px;box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;height:105px;top: 183px;width:450px;z-index: -1;">
             <legend style="font-weight: 900;">NF.</legend>
             <span style="width:20px;"></span>
             <p id="qr"></p>
@@ -127,7 +128,7 @@ label {
         
         </div style="">
        </fieldset>
-       <fieldset style="position: relative;left: 462px;top: -343px;background-color: white; width: 98px; height:125px;z-index: 1;">
+       <fieldset style="position: relative;left: 462px;top: -360px;background-color: white; width: 98px; height:145px;z-index: 1;">
         <legend style="">
             <p>Uso Interno</p>
         </legend>
