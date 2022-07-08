@@ -4,7 +4,8 @@
 <link href='https://fonts.googleapis.com/css?family=Nunito Sans' rel='stylesheet'>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script> 
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
 <meta charset="utf-8" /> 
 <title>Gerador de Etiqueta</title>
 <link rel="icon" type="image/x-icon" href="https://github.com/KenyOS/pfsense-captive-portal/raw/master/document-office-print-printer-svgrepo-com.svg">
@@ -59,9 +60,14 @@
     #generator {
         display: none;
     }
+
+.page {
+  height: 100vh;
+  page-break-after: always;
+}
     @page {
             size: A4 landscape;
-            background-color: lightgreen;
+            /*background-color: lightgreen;*/
 
     }
 }
@@ -103,7 +109,7 @@ label {
 
 </div>
 <div id="tpl" style="height: 425px;">
-        <p><img src="https://github.com/KenyOS/pfsense-captive-portal/raw/master/captiveportal-logo.png" style="float:left;margin-right: -25%;"> <div style="text-align:center;"><span style="font-family: 'Nunito Sans';">Rua Pedralia, Nº 70 - Bairro Gumercindo</span><br><span style="font-family: 'Nunito Sans';"> Sao Paulo/SP - CEP-04130-080</span><br><span style="font-family: 'Nunito Sans';font-size: 14px;"> 🌐 techmeter.com.br </span> <br> <span style="font-family: 'Nunito Sans';font-size: 14px;">🕿 Tel: (11) 5071-1630</span></p><br><span style="font-size: 32px;float:left;margin-right: 64%;font-weight: bold;font-family: 'Open Sans', sans-serif;margin-left:15px;margin-top:32px;visibility:hidden;">Cliente:</span></div>
+        <div style="position:relative;bottom: -100px;transform: rotate(-90deg);right: 280px;"><svg id="barcode"></svg></div><p><img src="https://github.com/KenyOS/pfsense-captive-portal/raw/master/captiveportal-logo.png" style="float:left;margin-right: -25%;"> <div style="text-align:center;"><span style="font-family: 'Nunito Sans';">Rua Pedralia, Nº 70 - Bairro Gumercindo</span><br><span style="font-family: 'Nunito Sans';"> Sao Paulo/SP - CEP-04130-080</span><br><span style="font-family: 'Nunito Sans';font-size: 14px;"> 🌐 techmeter.com.br </span> <br> <span style="font-family: 'Nunito Sans';font-size: 14px;">🕿 Tel: (11) 5071-1630</span></p><br><span style="font-size: 32px;float:left;margin-right: 64%;font-weight: bold;font-family: 'Open Sans', sans-serif;margin-left:15px;margin-top:32px;visibility:hidden;">Cliente:</span></div>
         <fieldset class="box" style="position: relative;font-weight: 900;font-size: 42px;letter-spacing: 4px;font-family: 'Open Sans', sans-serif;bottom: 15px;border-bottom-style: solid;border-width: 5px;border-color: RGB(187, 142, 81); right: -465px;bottom: 180px; width: 70px; height: 50px;text-align: center !important;">
             <legend style="font-size: 14px;letter-spacing: 6px;font-weight: 900;">caixa</legend>
             <div style="bottom: 28px !important;">
@@ -112,10 +118,10 @@ label {
             </div>
             </div>
         </fieldset>
-        <div>
+        
        <fieldset style="position: relative;font-size: calc(100% + 2vw);font-family: 'Open Sans', sans-serif;margin-left:15px;bottom: 180px;word-break: break-word;font-weight: 900;width:83%;border-width: 2px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;height:260px;">
         <legend style="font-size: 14px;letter-spacing: 2px;text-align: left;"><span style="">Cliente</span></legend>
-        <legend style="font-size: 28px;letter-spacing: 2px;text-align: right;"><span><p id="idprocesso" style="position: absolute;transform: rotate(-90deg);right:-128px;bottom: 120px;font-weight: bold;font-family: 'Nunito Sans', sans-serif;font-size: 10px;"></p></p>
+        <legend style="font-size: 28px;letter-spacing: 2px;text-align: right;"><span><p id="dataidprocesso" style="position: absolute;transform: rotate(-90deg);right:-87px;bottom: 92px;font-weight: bold;font-family: 'Nunito Sans', sans-serif;font-size: 10px;"></p></p>
 
        <div id="qrcode" style="position: absolute;left: 453px;top: 52%;background-color: white;z-index: 2;"></div></span></legend>
        <span id="nomedocliente" style="position:relative;top: -50px;"></span>
@@ -126,24 +132,23 @@ label {
             <p id="qr"></p>
         </fieldset>
         
-        </div style="">
+        
        </fieldset>
        <fieldset style="position: relative;left: 462px;top: -360px;background-color: white; width: 98px; height:145px;z-index: 1;">
         <legend style="">
             <p>Uso Interno</p>
         </legend>
        </fieldset>
-
+       
        <p>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</p>
 
 
    </div>
 
 <table id="maintable">
-<tbody id=table>
+<tbody id="table">
 </tbody>
 </table>
-
 <script>
 /*****
  * When the "show me!" button gets clicked, 
@@ -213,7 +218,20 @@ var clienteVal = getQueryVariable("cliente");
 var recordidVal = getQueryVariable("recordid");
 document.getElementById("nomedocliente").innerHTML = decodeURIComponent(clienteVal).toUpperCase();
 var idprocessoVal = getQueryVariable("idprocesso");
-document.getElementById("idprocesso").innerHTML = decodeURIComponent(idprocessoVal)
+JsBarcode("#barcode", idprocessoVal, {
+
+  lineColor: "#000",
+  width: 1,
+  height: 15,
+  //marginTop: 150,
+  //marginBottom: 150,
+  //marginRight: 14,
+  displayValue: true,
+  fontSize: 8
+});
+var dataidprocessoVal = getQueryVariable("dataidprocesso");
+document.getElementById("dataidprocesso").innerHTML = decodeURIComponent(dataidprocessoVal);
+//document.getElementById("idprocesso").innerHTML = decodeURIComponent(idprocessoVal);
 var qrcode = new QRCode("qrcode", {
     text: "l.techmeter.com.br/8Apu2Y?" + "&recordid=" + recordidVal,
     width: 106,
