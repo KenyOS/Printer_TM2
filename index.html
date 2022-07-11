@@ -150,6 +150,26 @@ label {
 </tbody>
 </table>
 <script>
+var clienteVal = getQueryVariable("cliente");
+console.log("Cliente: ", clienteVal);
+console.log("Length Str Cliente: ", clienteVal.length);
+            
+    var that = clienteVal,
+        textLength = that.length;
+        
+    
+    
+    if(textLength > 92) {
+        document.getElementById("nomedocliente").style.fontSize = "medium";
+        
+    } else if(textLength > 70) {
+        document.getElementById("nomedocliente").style.fontSize = "large";
+        
+    } else if(textLength > 52) {
+        document.getElementById("nomedocliente").style.fontSize = "x-large";
+        
+    
+};
 /*****
  * When the "show me!" button gets clicked, 
  *   there's a few things we do: get the values of
