@@ -57,10 +57,11 @@
 
 
 @media print {
+    /* * {margin:0;padding:0} */
     #generator {
         display: none;
     }
-
+  
 .page {
   height: 100vh;
   page-break-after: always;
@@ -68,8 +69,9 @@
     @page {
             size: A4 landscape;
             /*background-color: lightgreen;*/
-
+            margin:0mm;
     }
+
 }
 
 label {
