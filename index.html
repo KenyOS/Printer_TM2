@@ -259,7 +259,7 @@ var dataidprocessoVal = getQueryVariable("dataidprocesso");
 document.getElementById("dataidprocesso").innerHTML = decodeURIComponent(dataidprocessoVal);
 //document.getElementById("idprocesso").innerHTML = decodeURIComponent(idprocessoVal);
 var qrcode = new QRCode("qrcode", {
-    text: "http://l.techmeter.com.br:8006/?zone=techmeter_expedicao2" + "&recordid=" + recordidVal,
+    text: "http://l.techmeter.com.br?" + "recordid=" + recordidVal + "&processoid=" + idprocessoVal,
     width: 106,
     height: 106,
     colorDark : "#000000",
