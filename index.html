@@ -316,23 +316,14 @@ function buildEm() {
     var endingValue = parseInt(document.getElementById("endingValue").value);
     var endingValuemod = endingValue%2;
 
-if(endingValue == 1){
-    const addCSS = css => document.head.appendChild(document.createElement("style")).innerHTML=css;
+if(endingValuemod === 1 ){
+const addCSS = css => document.head.appendChild(document.createElement("style")).innerHTML=css;
         addCSS("tr.voucher:nth-last-child(1) > td:nth-last-child(1) > div:nth-child(1) {visibility: hidden !important;}")
         addCSS("tr.voucher:nth-last-child(1) > td:nth-child(1) > div:nth-child(1) > fieldset:nth-child(5) > legend:nth-child(2) > span:nth-child(1) > p:nth-child(1) {visibility: hidden !important;}")
-} else {
+    } else {
         const addCSS = css => document.head.appendChild(document.createElement("style")).innerHTML=css;
         addCSS("tr.voucher:nth-last-child(1) > td:nth-last-child(1) > div:nth-child(1) {visibility: visible !important;}")
         addCSS("tr.voucher:nth-last-child(1) > td:nth-child(1) > div:nth-child(1) > fieldset:nth-child(5) > legend:nth-child(2) > span:nth-child(1) > p:nth-child(1) {visibility: visible !important;}")
-    };
-if(endingValuemod === 1 && endingValue > 2 ){
-const addCSS = css => document.head.appendChild(document.createElement("style")).innerHTML=css;
-        addCSS("tr.voucher:nth-last-child(1) > td:nth-last-child(1) > div:nth-child(1) {display: none !important;}")
-        addCSS("tr.voucher:nth-last-child(1) > td:nth-child(1) > div:nth-child(1) > fieldset:nth-child(5) > legend:nth-child(2) > span:nth-child(1) > p:nth-child(1) {display: none !important;}")
-    } else {
-        const addCSS = css => document.head.appendChild(document.createElement("style")).innerHTML=css;
-        addCSS("tr.voucher:nth-last-child(1) > td:nth-last-child(1) > div:nth-child(1) {display: block !important;}")
-        addCSS("tr.voucher:nth-last-child(1) > td:nth-child(1) > div:nth-child(1) > fieldset:nth-child(5) > legend:nth-child(2) > span:nth-child(1) > p:nth-child(1) {display: block !important;}")
     };
     var vouchers=document.getElementById("vouchers").value.trim().split('\n');
 
