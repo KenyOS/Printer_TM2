@@ -110,7 +110,7 @@ label {
 </form>
 
 </div>
-<div id="whiteblock" style="position: absolute;margin-left: 46.9%;width: 700px; height: 900px;background-color: #fff;z-index: 999;display:none;"></div>
+
 <div id="tpl" style="height: 425px;">
         <div style="position:relative;bottom: -85px;transform: rotate(-90deg);right: 290px;"><svg id="barcode"></svg></div><p><img src="https://github.com/KenyOS/pfsense-captive-portal/raw/master/captiveportal-logo.png" style="float:left;margin-right: -25%;"> <div style="text-align:center;"><span style="font-family: 'Nunito Sans';">Rua Pedralia, Nº 70 - Bairro Gumercindo</span><br><span style="font-family: 'Nunito Sans';"> Sao Paulo/SP - CEP-04130-080</span><br><span style="font-family: 'Nunito Sans';font-size: 14px;"> 🌐 techmeter.com.br </span> <br> <span style="font-family: 'Nunito Sans';font-size: 14px;">🕿 Tel: (11) 5071-1630</span></p><br><span style="font-size: 32px;float:left;margin-right: 64%;font-weight: bold;font-family: 'Open Sans', sans-serif;margin-left:15px;margin-top:32px;visibility:hidden;">Cliente:</span></div>
         <fieldset class="box" style="position: relative;font-weight: 900;font-size: 42px;letter-spacing: 4px;font-family: 'Open Sans', sans-serif;bottom: 15px;border-bottom-style: solid;border-width: 5px;border-color: RGB(187, 142, 81); right: -465px;bottom: 180px; width: 70px; height: 50px;text-align: center !important;">
@@ -317,11 +317,14 @@ function buildEm() {
     var endingValuemod = endingValue%2;
 
 if(endingValue == 1){
-    document.getElementById("whiteblock").style.display = "block";
-}
-if(endingValue > 1){
-    document.getElementById("whiteblock").style.display = "none";
-}
+    const addCSS = css => document.head.appendChild(document.createElement("style")).innerHTML=css;
+        addCSS("tr.voucher:nth-last-child(1) > td:nth-last-child(1) > div:nth-child(1) {visibility: hidden !important;}")
+        addCSS("tr.voucher:nth-last-child(1) > td:nth-child(1) > div:nth-child(1) > fieldset:nth-child(5) > legend:nth-child(2) > span:nth-child(1) > p:nth-child(1) {visibility: hidden !important;}")
+} else {
+        const addCSS = css => document.head.appendChild(document.createElement("style")).innerHTML=css;
+        addCSS("tr.voucher:nth-last-child(1) > td:nth-last-child(1) > div:nth-child(1) {visibility: visible !important;}")
+        addCSS("tr.voucher:nth-last-child(1) > td:nth-child(1) > div:nth-child(1) > fieldset:nth-child(5) > legend:nth-child(2) > span:nth-child(1) > p:nth-child(1) {visibility: visible !important;}")
+    };
 if(endingValuemod === 1 && endingValue > 2 ){
 const addCSS = css => document.head.appendChild(document.createElement("style")).innerHTML=css;
         addCSS("tr.voucher:nth-last-child(1) > td:nth-last-child(1) > div:nth-child(1) {display: none !important;}")
