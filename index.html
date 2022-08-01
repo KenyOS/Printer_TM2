@@ -317,10 +317,11 @@ function printEm() {
 
 function buildEm() {
     var vouchers=document.getElementById("vouchers").value.trim().split('\n');
+    
     //hide second block when only have 1 to need to generate..
-    if (endingValue = 1) {
-    document.getElementById("whiteblock").style.display = "block";
-    }
+    //if (endingValue = 1) {
+    //document.getElementById("whiteblock").style.display = "block";
+    //}
     
     if (vouchers.length%2) {
         alert("Campo Gerado não pode estar vazio.");
