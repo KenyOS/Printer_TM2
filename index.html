@@ -137,7 +137,7 @@ label {
         
         
        </fieldset>
-       <fieldset style="position: relative;left: 462px;top: -333px;background-color: white; width: 98px; height:108px;z-index: 1;">
+       <fieldset style="position: relative;left: 462px;top: -348px;background-color: white; width: 98px; height:111px;z-index: 1;">
         <legend style="">
             <div id="idprocesso" style=""></div>
         </legend>
@@ -253,7 +253,7 @@ JsBarcode("#barcode", idprocessoVal, {
   lineColor: "#000",
   width: 1,
   height: 25,
-  marginTop: 21,
+  marginTop: 14,
   //marginBottom: 150,
   marginLeft: -3,
   displayValue: false,
@@ -265,7 +265,7 @@ document.getElementById("dataidprocesso").innerHTML = decodeURIComponent(dataidp
 var qrcode = new QRCode("qrcode", {
     text: "http://l.techmeter.com.br?" + "recordid=" + recordidVal + "&processoid=" + idprocessoVal,
     width: 106,
-    height: 106,
+    height: 92,
     colorDark : "#000000",
     colorLight : "#ffffff",
     correctLevel : QRCode.CorrectLevel.H
