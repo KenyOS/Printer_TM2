@@ -112,7 +112,7 @@ label {
 </div>
 
 <div id="tpl" style="height: 425px;">
-        <div style="position:relative;bottom: -85px;transform: rotate(-90deg);right: 290px;"><svg id="barcode"></svg></div><p><img src="https://github.com/KenyOS/pfsense-captive-portal/raw/master/captiveportal-logo.png" style="float:left;margin-right: -25%;"> <div style="text-align:center;"><span style="font-family: 'Nunito Sans';">Rua Pedralia, Nº 70 - Bairro Gumercindo</span><br><span style="font-family: 'Nunito Sans';"> Sao Paulo/SP - CEP-04130-080</span><br><span style="font-family: 'Nunito Sans';font-size: 14px;"> 🌐 techmeter.com.br </span> <br> <span style="font-family: 'Nunito Sans';font-size: 14px;">🕿 Tel: (11) 5071-1630</span></p><br><span style="font-size: 32px;float:left;margin-right: 64%;font-weight: bold;font-family: 'Open Sans', sans-serif;margin-left:15px;margin-top:32px;visibility:hidden;">Cliente:</span></div>
+        <div style="position:relative;bottom: -85px;transform: rotate(-90deg);right: 290px;"><svg id="barcode"></svg></div><p><img src="https://github.com/KenyOS/pfsense-captive-portal/raw/master/captiveportal-logo.png" style="float:left;margin-right: -25%;"> <div style="text-align:center;"><span style="font-family: 'Nunito Sans';">Rua Pedralia, Nº 70 - Bairro Gumercindo</span><br><span style="font-family: 'Nunito Sans';"> Sao Paulo/SP - CEP-04130-080</span><br><span style="font-family: 'Nunito Sans';font-size: 14px;"> <img src="web.png" style="height: 14px; width: 14px"> techmeter.com.br </span> <br> <span style="font-family: 'Nunito Sans';font-size: 14px;">🕿 Tel: (11) 5071-1630</span></p><br><span style="font-size: 32px;float:left;margin-right: 64%;font-weight: bold;font-family: 'Open Sans', sans-serif;margin-left:15px;margin-top:32px;visibility:hidden;">Cliente:</span></div>
         <fieldset class="box" style="position: relative;font-weight: 900;font-size: 42px;letter-spacing: 4px;font-family: 'Open Sans', sans-serif;bottom: 15px;border-bottom-style: solid;border-width: 5px;border-color: RGB(187, 142, 81); right: -465px;bottom: 180px; width: 70px; height: 50px;text-align: center !important;">
             <legend style="font-size: 14px;letter-spacing: 6px;font-weight: 900;">caixa</legend>
             <div style="bottom: 28px !important;">
@@ -124,7 +124,7 @@ label {
         
        <fieldset style="position: relative;font-size: calc(100% + 2vw);font-family: 'Open Sans', sans-serif;margin-left:15px;bottom: 180px;word-break: break-word;font-weight: 900;width:83%;border-width: 2px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;height:260px;">
         <legend style="font-size: 14px;letter-spacing: 2px;text-align: left;"><span style="">Cliente</span></legend>
-        <legend style="font-size: 28px;letter-spacing: 2px;text-align: right;"><span><p id="dataidprocesso" style="position: absolute;transform: rotate(-90deg);right:-87px;bottom: 92px;font-weight: bold;font-family: 'Nunito Sans', sans-serif;font-size: 10px;"></p></p>
+        <legend style="font-size: 28px;letter-spacing: 2px;text-align: right;"><span><p id="dataidprocesso" style="position: absolute;transform: rotate(-90deg);right:-95px;bottom: 92px;font-weight: bold;font-family: 'Nunito Sans', sans-serif;font-size: 12px;"></p></p>
 
        <div id="qrcode" style="position: absolute;left: 453px;top: 52%;background-color: white;z-index: 2;"></div></span></legend>
        <span id="nomedocliente" style="position:relative;top: -50px !important;"></span>
@@ -139,7 +139,7 @@ label {
        </fieldset>
        <fieldset style="position: relative;left: 462px;top: -360px;background-color: white; width: 98px; height:145px;z-index: 1;">
         <legend style="">
-            <p>Uso Interno</p>
+            <p id="processoid" style="font-size:10px;"></p>
         </legend>
        </fieldset>
        
@@ -173,7 +173,27 @@ console.log("Length Str Cliente: ", clienteVal.length);
     } else if(textLength > 45) {
         document.getElementById("nomedocliente").style.fontSize = "x-large";
         document.getElementById("nomedocliente").style.top = "-50px";
+        
+    
+};
 
+var processoidVal = getQueryVariable("idprocesso");
+console.log("processoid: ", processoidVal);
+console.log("Length Str processoid: ", processoidVal.length);
+            
+    var thatid = processoidVal,
+        textLengthid = thatid.length;
+        
+    
+    
+    if(textLengthid === 10) {
+        document.getElementById("processoid").style.fontSize = "12px";
+        
+    } else if(textLengthid  === 11) {
+        document.getElementById("processoid").style.fontSize = "11px";
+        
+    } else if(textLengthid === 12) {
+        document.getElementById("processoid").style.fontSize = "10px";
         
     
 };
@@ -247,6 +267,7 @@ var clienteVal = getQueryVariable("cliente");
 var recordidVal = getQueryVariable("recordid");
 document.getElementById("nomedocliente").innerHTML = decodeURIComponent(clienteVal).toUpperCase();
 var idprocessoVal = getQueryVariable("idprocesso");
+document.getElementById("processoid").innerHTML = decodeURIComponent(idprocessoVal).toUpperCase();
 JsBarcode("#barcode", idprocessoVal, {
 
   lineColor: "#000",
