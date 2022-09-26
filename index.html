@@ -123,21 +123,21 @@ label {
         </fieldset>
         
        <fieldset style="position: relative;font-size: calc(100% + 2vw);font-family: 'Open Sans', sans-serif;margin-left:15px;bottom: 180px;word-break: break-word;font-weight: 900;width:83%;border-width: 2px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;height:260px;">
-        <legend style="font-size: 14px;letter-spacing: 2px;text-align: left;"><span style="">Cliente</span></legend>
+        <legend style="font-size: 14px;letter-spacing: 2px;text-align: left;"><span id="legendaCliente" style="">Cliente</span></legend>
         <legend style="font-size: 28px;letter-spacing: 2px;text-align: right;"><span><p id="dataidprocesso" style="position: absolute;transform: rotate(-90deg);right:-95px;bottom: 92px;font-weight: bold;font-family: 'Nunito Sans', sans-serif;font-size: 12px;"></p></p>
 
        <div id="qrcode" style="position: absolute;left: 453px;top: 52%;background-color: white;z-index: 2;"></div></span></legend>
        <span id="nomedocliente" style="position:relative;top: -50px !important;"></span>
        <span style="visibility:hidden">Textxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
-       <fieldset style="position: absolute;font-size: 28px;font-family: 'Open Sans', sans-serif;margin-left:15px;bottom: 125px;margin-top: -65px;border-width: 1px;box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;height:105px;top: 183px;width:450px;z-index: -1;">
-            <legend style="font-weight: 900;">NF.</legend>
+       <fieldset id="campoNF" style="position: absolute;font-size: 28px;font-family: 'Open Sans', sans-serif;margin-left:15px;bottom: 125px;margin-top: -65px;border-width: 1px;box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;height:105px;top: 183px;width:450px;z-index: -1;">
+            <legend id="legendaNF" style="font-weight: 900;">NF.</legend>
             <span style="width:20px;"></span>
             <p id="qr"></p>
         </fieldset>
         
         
        </fieldset>
-       <fieldset style="position: relative;left: 462px;top: -360px;background-color: white; width: 98px; height:145px;z-index: 1;">
+       <fieldset id="IDProcess" style="position: relative;left: 462px;top: -360px;background-color: white; width: 98px; height:145px;z-index: 1;">
         <legend style="">
             <p id="processoid" style="font-size:10px;"></p>
         </legend>
@@ -392,6 +392,23 @@ const addCSS = css => document.head.appendChild(document.createElement("style"))
 }
 
 </script>
-
+<script type="text/javascript">
+//Se for processo RSV
+var substring = "TM_RSV";
+if(clienteVal.includes(substring) === true) {
+    document.getElementById( 'barcode' ).style.display = 'none';
+    document.getElementById( 'IDProcess' ).style.display = 'none';
+    document.getElementById( 'qrcode' ).style.display = 'none';
+    document.getElementById( 'dataidprocesso' ).style.display = 'none';
+    document.getElementById( 'legendaNF' ).style.display = 'none';
+    document.getElementById('legendaCliente').textContent = 'Destinatário';
+}
+//Se for para Indflow
+var substring = "TM_RSV";
+var dest = "Indflow" + " - " + idprocessoVal;
+if(clienteVal.includes(substring) === true) {
+    document.getElementById('nomedocliente').textContent = dest.toUpperCase();
+}
+</script>
 </body>
 </html>
