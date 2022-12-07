@@ -84,7 +84,7 @@ label {
 
 <body>
 <div id="generator">
-<h4 style="position:absolute;top:-10px;">Versão: 22.01 - 07/12/2022</h4>
+<h4 style="position:absolute;top:-10px;">Versão: 22.02 - 07/12/2022</h4>
 <img src="https://github.com/KenyOS/pfsense-captive-portal/raw/master/captiveportal-logo.png" style="margin-left: 80%;"/>
 <h1>Gerador de Etiqueta</h1>
 <h2>Volumes de Caixas:</h2>
@@ -124,7 +124,7 @@ label {
             </div>
         </fieldset>
         
-       <fieldset style="line-height: 0.8;position: relative;font-size: calc(100% + 2vw);font-family: 'Open Sans', sans-serif;margin-left:15px;bottom: 180px;word-break: break-word;font-weight: 900;width:83%;border-width: 2px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;height:260px;">
+       <fieldset style="line-height: 1.1;position: relative;font-size: calc(100% + 2vw);font-family: 'Open Sans', sans-serif;margin-left:15px;bottom: 180px;word-break: break-word;font-weight: 900;width:83%;border-width: 2px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;height:260px;">
         <legend style="font-size: 14px;letter-spacing: 2px;text-align: left;"><span id="legendaCliente" style="">Cliente</span></legend>
         <legend style="font-size: 28px;letter-spacing: 2px;text-align: right;"><span><p id="dataidprocesso" style="position: relative;transform: rotate(-90deg);left:285px;top: 272px;font-weight: bold;font-family: 'Nunito Sans', sans-serif;font-size: 12px;"></p></p>
 
@@ -163,8 +163,10 @@ console.log("Length Str Cliente: ", clienteVal.length);
         textLength = that.length;
         
     
-    
-    if(textLength > 92) {
+    if(textLength < 92) {
+        document.getElementById("nomedocliente").style.top = "-50px";
+        
+    } else if(textLength > 92) {
         document.getElementById("nomedocliente").style.fontSize = "medium";
         document.getElementById("nomedocliente").style.top = "-50px";
         
