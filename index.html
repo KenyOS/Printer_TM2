@@ -37,7 +37,7 @@
     }
 
 
-    tr.voucher {
+    tr.voucher:nth-of-type(odd) {
             page-break-inside: avoid;
 
        }
@@ -57,11 +57,15 @@
 
 
 @media print {
+    html, body{
+    -webkit-box-shadow: none;
+    -moz-box-shadow:    none;
+    box-shadow:         none; 
+    }
     /* * {margin:0;padding:0} */
     #generator {
         display: none;
     }
-    tr.voucher {page-break-inside: avoid;}
   
 .page {
   height: 100vh;
@@ -84,11 +88,10 @@ label {
 
 <body>
 <div id="generator">
-<h4 style="position:absolute;top:-10px;">Versão: 22.02 - 07/12/2022</h4>
 <img src="https://github.com/KenyOS/pfsense-captive-portal/raw/master/captiveportal-logo.png" style="margin-left: 80%;"/>
 <h1>Gerador de Etiqueta</h1>
-<h2>Volumes de Caixas:</h2>
-<label for="startingValue">Ínicio do Volume : </label>
+<h2>Gerador de Volumes de Caixas:</h2>
+<label for="startingValue">Começo do Volume : </label>
 <input type="text" id="startingValue" value="1" />
 <label for="endingValue">Fim do Volume :</label>
 <input type="text" id="endingValue" />
@@ -114,22 +117,22 @@ label {
 </div>
 
 <div id="tpl" style="height: 425px;">
-        <div style="position:relative;top: 85px;margin-top: 5px;transform: rotate(-90deg);right: 290px;"><svg id="barcode"></svg></div><p><img src="https://github.com/KenyOS/pfsense-captive-portal/raw/master/captiveportal-logo.png" style="float:left;margin-right: -25%;margin-left: 8px;"> <div style="text-align:center;padding-right:32px;"><span style="font-family: 'Nunito Sans';">Rua Pedralia, Nº 70 - Bairro Gumercindo</span><br><span style="font-family: 'Nunito Sans';"> Sao Paulo/SP - CEP-04130-080</span><br><span style="font-family: 'Nunito Sans';font-size: 14px;"> <img src="web.png" style="height: 14px; width: 14px"> techmeter.com.br </span> <br> <span style="font-family: 'Nunito Sans';font-size: 14px;">🕿 Tel: (11) 5071-1630</span></p><br><span style="font-size: 32px;float:left;margin-right: 64%;font-weight: bold;font-family: 'Open Sans', sans-serif;margin-left:15px;margin-top:32px;visibility:hidden;">Cliente:</span></div>
-        <fieldset class="box" style="position: relative;font-weight: 900;font-size: 42px;letter-spacing: 4px;font-family: 'Open Sans', sans-serif;bottom: 15px;border-bottom-style: solid;border-width: 5px;border-color: RGB(187, 142, 81); margin-left: 70%;bottom: 180px; width: 70px; height: 50px;text-align: center !important;">
+        <div style="position:relative;bottom: -85px;transform: rotate(-90deg);right: 290px;"><svg id="barcode"></svg></div><p><img src="https://github.com/KenyOS/pfsense-captive-portal/raw/master/captiveportal-logo.png" style="float:left;margin-right: -25%;"> <div style="text-align:center;"><span style="font-family: 'Nunito Sans';">Rua Pedralia, Nº 70 - Bairro Gumercindo</span><br><span style="font-family: 'Nunito Sans';"> Sao Paulo/SP - CEP-04130-080</span><br><span style="font-family: 'Nunito Sans';font-size: 14px;"> <img src="web.png" style="height: 14px; width: 14px"> techmeter.com.br </span> <br> <span style="font-family: 'Nunito Sans';font-size: 14px;">🕿 Tel: (11) 5071-1630</span></p><br><span style="font-size: 32px;float:left;margin-right: 64%;font-weight: bold;font-family: 'Open Sans', sans-serif;margin-left:15px;margin-top:32px;visibility:hidden;">Cliente:</span></div>
+        <fieldset class="box" style="position: relative;font-weight: 900;font-size: 42px;letter-spacing: 4px;font-family: 'Open Sans', sans-serif;bottom: 15px;border-bottom-style: solid;border-width: 5px;border-color: RGB(187, 142, 81); right: -465px;bottom: 180px; width: 70px; height: 50px;text-align: center !important;">
             <legend style="font-size: 14px;letter-spacing: 6px;font-weight: 900;">caixa</legend>
             <div style="bottom: 28px !important;">
             <div style="text-align: center;">
-            <span id="code" style="position:relative;right:calc(25% - 35px);left:calc(5% - 5px);bottom: 8px;"></span>
+            <span id="code" style="position:absolute;right:calc(25% - 35px);left:calc(5% - 5px);margin-top: -10px;"></span>
             </div>
             </div>
         </fieldset>
         
-       <fieldset style="line-height: 1.1;position: relative;font-size: calc(100% + 2vw);font-family: 'Open Sans', sans-serif;margin-left:15px;bottom: 180px;word-break: break-word;font-weight: 900;width:83%;border-width: 2px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;height:260px;">
+       <fieldset style="position: relative;font-size: calc(100% + 2vw);font-family: 'Open Sans', sans-serif;margin-left:15px;bottom: 180px;word-break: break-word;font-weight: 900;width:83%;border-width: 2px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;height:260px;">
         <legend style="font-size: 14px;letter-spacing: 2px;text-align: left;"><span id="legendaCliente" style="">Cliente</span></legend>
-        <legend style="font-size: 28px;letter-spacing: 2px;text-align: right;"><span><p id="dataidprocesso" style="position: relative;transform: rotate(-90deg);left:285px;top: 272px;font-weight: bold;font-family: 'Nunito Sans', sans-serif;font-size: 12px;"></p></p>
+        <legend style="font-size: 28px;letter-spacing: 2px;text-align: right;"><span><p id="dataidprocesso" style="position: absolute;transform: rotate(-90deg);right:-95px;bottom: 92px;font-weight: bold;font-family: 'Nunito Sans', sans-serif;font-size: 12px;"></p></p>
 
        <div id="qrcode" style="position: absolute;left: 453px;top: 52%;background-color: white;z-index: 2;"></div></span></legend>
-       <span id="nomedocliente" style="position:relative;bottom: 60px !important;"></span>
+       <span id="nomedocliente" style="position:relative;top: -50px !important;"></span>
        <span style="visibility:hidden">Textxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
        <fieldset id="campoNF" style="position: absolute;font-size: 28px;font-family: 'Open Sans', sans-serif;margin-left:15px;bottom: 125px;margin-top: -65px;border-width: 1px;box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;height:105px;top: 183px;width:450px;z-index: -1;">
             <legend id="legendaNF" style="font-weight: 900;">NF.</legend>
@@ -139,7 +142,7 @@ label {
         
         
        </fieldset>
-       <fieldset id="IDProcess" style="position: relative;margin-left: 464px;top: -360px;background-color: white; width: 98px; height:145px;z-index: 1;">
+       <fieldset id="IDProcess" style="position: relative;left: 462px;top: -360px;background-color: white; width: 98px; height:145px;z-index: 1;">
         <legend style="">
             <p id="processoid" style="font-size:10px;"></p>
         </legend>
@@ -151,7 +154,7 @@ label {
    </div>
 
 <table id="maintable">
-<tbody id="table" style="page-break-inside: avoid;display: inline-block;">
+<tbody id="table">
 </tbody>
 </table>
 <script>
@@ -163,10 +166,8 @@ console.log("Length Str Cliente: ", clienteVal.length);
         textLength = that.length;
         
     
-    if(textLength < 92) {
-        document.getElementById("nomedocliente").style.top = "-50px";
-        
-    } else if(textLength > 92) {
+    
+    if(textLength > 92) {
         document.getElementById("nomedocliente").style.fontSize = "medium";
         document.getElementById("nomedocliente").style.top = "-50px";
         
