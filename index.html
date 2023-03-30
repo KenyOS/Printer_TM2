@@ -59,12 +59,19 @@
 
 
 @media print {
+tr.voucher:nth-child(even) > td:nth-child(n) > div:nth-child(1) > fieldset:nth-child(5) > fieldset:nth-child(5) {
+    height: 120px !important;
+}
+tr.voucher:nth-child(even) > td:nth-child(n) > div:nth-child(1) > fieldset:nth-child(5) > fieldset:nth-child(5) > span:nth-child(2) {
+    position: relative;
+    bottom: -16px !important;
+}
+
     .embedim-snow{display: none !important;}
     /* * {margin:0;padding:0} */
     #generator {
         display: none;
     }
-  
 .page {
   height: 90%;
   page-break-after: always;
@@ -76,7 +83,6 @@
     }
 
 }
-
 label {
   display: block;
   font-weight: bold;
@@ -86,7 +92,7 @@ label {
 
 <body>
 <div id="generator">
-<h4 style="position:absolute;top:-10px;">Versão: 22.06  - 23/01/2023</h4>
+<h4 style="position:absolute;top:-10px;">Versão: 22.08  - 23/01/2023</h4>
 <img src="https://github.com/KenyOS/pfsense-captive-portal/raw/master/captiveportal-logo.png" style="margin-left: 80%;"/>
 <h1>Gerador de Etiqueta</h1>
 <h2>Gerador de Volumes de Caixas:</h2>
@@ -135,11 +141,10 @@ label {
        <span style="visibility:hidden">Textxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
        <fieldset id="campoNF" style="position: absolute;font-size: 28px;font-family: 'Open Sans', sans-serif;margin-left:15px;bottom: 125px;margin-top: -65px;border-width: 1px;height:105px;top: 183px;width:450px;z-index: -1;">
             <legend id="legendaNF" style="font-weight: 900;">NF.</legend>
-            <span style="width:20px;"></span>
+            <span id="nf" style="width:280px;font-size: 72px;"></span>
             <p id="qr"></p>
         </fieldset>
-        
-        
+              
        </fieldset>
        <fieldset id="IDProcess" style="position: relative;left: 462px;top: -360px;background-color: white; width: 98px; height:145px;z-index: 1;">
         <legend style="">
@@ -269,6 +274,8 @@ runCounter = function() {
         }
 var clienteVal = getQueryVariable("cliente");
 var recordidVal = getQueryVariable("recordid");
+var idnfVal = getQueryVariable("idnf");
+document.getElementById("nf").innerHTML = decodeURIComponent(idnfVal);
 document.getElementById("nomedocliente").innerHTML = decodeURIComponent(clienteVal).toUpperCase();
 var idprocessoVal = getQueryVariable("idprocesso");
 document.getElementById("processoid").innerHTML = decodeURIComponent(idprocessoVal).toUpperCase();
